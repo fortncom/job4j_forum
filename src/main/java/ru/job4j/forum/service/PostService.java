@@ -13,10 +13,13 @@ public class PostService {
 
     private final PostRepository postRepository;
     private final UserRepository userRepository;
+    private final AuthorityRepository authorities;
 
-    public PostService(PostRepository postRepository, UserRepository userRepository) {
+    public PostService(PostRepository postRepository,
+                       UserRepository userRepository, AuthorityRepository authorities) {
         this.postRepository = postRepository;
         this.userRepository = userRepository;
+        this.authorities = authorities;
     }
 
     public User findUserByName(String name) {

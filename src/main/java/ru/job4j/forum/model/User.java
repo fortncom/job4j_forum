@@ -7,14 +7,18 @@ import java.util.Objects;
 @Table(name = "users")
 public class User {
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    private String password;
+
+    @Column(unique = true)
     private String username;
 
-    private String password;
+    @ManyToOne
+    @JoinColumn(name = "authority_id")
+    private Authority authority;
 
     private boolean enabled;
 
@@ -55,6 +59,14 @@ public class User {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public Authority getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(Authority authority) {
+        this.authority = authority;
     }
 
     @Override
