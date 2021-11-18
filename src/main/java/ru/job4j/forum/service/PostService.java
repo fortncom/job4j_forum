@@ -5,6 +5,7 @@ import ru.job4j.forum.model.Post;
 import ru.job4j.forum.model.User;
 import ru.job4j.forum.repository.*;
 
+import javax.transaction.Transactional;
 import java.time.Instant;
 import java.util.*;
 
@@ -46,10 +47,13 @@ public class PostService {
         return userRepository.findById(id).get();
     }
 
+    @Transactional
     public void save(User user) throws UserConstraintViolation {
+        authorities.save(user.getAuthority());
         userRepository.save(user);
     }
 
+    @Transactional
     public void save(Post post) {
         if (post.getId() == 0) {
             post.setCreated(Date.from(Instant.now()));
