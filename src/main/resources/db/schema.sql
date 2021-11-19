@@ -16,3 +16,6 @@ create table IF NOT EXISTS authority (
     id serial primary key,
     authority varchar(2000)
 );
+
+insert into post (name, description) values ('О чем этот форум?', 'Описание');
+insert into post (name, description) values ('Правила форума.', 'Описание');
