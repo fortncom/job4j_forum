@@ -1,6 +1,5 @@
 package ru.job4j.forum.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -20,9 +19,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final PostService service;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
     public SecurityConfig(PostService service) {
         this.service = service;
     }
@@ -41,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService());
-        authProvider.setPasswordEncoder(passwordEncoder);
+        authProvider.setPasswordEncoder(passwordEncoder());
 
         return authProvider;
     }
